@@ -48,7 +48,7 @@ export function Contact() {
 
   try {
     const response = await fetch(
-      "https://vishnuji44.app.n8n.cloud/webhook-test/acy-contact",
+      "https://vishnuji44.app.n8n.cloud/webhook/acy-contact",
       {
         method: "POST",
         headers: {
