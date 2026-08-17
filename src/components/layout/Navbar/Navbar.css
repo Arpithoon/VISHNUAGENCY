@@ -1,13 +1,3 @@
-/* =========================================================
-   ACY SOCIAL MEDIA EXPERT
-   PREMIUM NAVIGATION SYSTEM
-   ========================================================= */
-
-
-/* =========================================================
-   01 — NAVBAR SHELL
-   ========================================================= */
-
 .navbar {
   position: fixed;
   top: 0;
@@ -701,28 +691,59 @@
 
 @media (max-width: 767px) {
   .navbar {
-    padding:
-      12px
-      14px;
+    padding: 8px 8px;
   }
 
   .navbar--scrolled {
-    padding-top: 9px;
+    padding-top: 7px;
   }
 
   .navbar__inner {
-    height: 54px;
-
-    padding-left: 10px;
-    padding-right: 7px;
+    height: 50px;
+    padding: 0 7px 0 10px;
+    gap: 6px;
   }
 
   .navbar--scrolled .navbar__inner {
-    height: 52px;
+    height: 48px;
   }
 
   .navbar__links {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 2.2vw, 14px);
+    margin-left: auto;
+    transform: none;
+  }
+
+  .navbar__link {
+    padding: 6px 0;
+    font-size: clamp(7px, 2.4vw, 10px);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .navbar__link::before,
+  .navbar__link::after {
     display: none;
+  }
+
+  .navbar__talk {
+    display: block;
+  }
+
+  .navbar__talk-trigger {
+    min-height: 32px;
+    padding: 0 5px;
+    gap: 3px;
+    font-size: clamp(8px, 2.5vw, 10px);
+    white-space: nowrap;
+  }
+
+  .navbar__talk-trigger svg {
+    width: 10px;
+    height: 10px;
   }
 
   .navbar__cta {
@@ -730,27 +751,31 @@
   }
 
   .navbar__menu-button {
-    display: grid;
+    display: none;
   }
 
   .navbar__brand {
-    gap: 9px;
+    gap: 7px;
+    flex-shrink: 0;
   }
 
-  .navbar__brand-placeholder {
-    width: 30px;
-    height: 30px;
-
-    flex-basis: 30px;
+  .navbar__logo {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    flex-basis: 30px !important;
   }
 
   .navbar__brand-name {
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .navbar__brand-name span {
-    font-size: 6px;
-    letter-spacing: 0.1em;
+    font-size: 5px;
+    letter-spacing: 0.08em;
   }
 }
 
@@ -1255,7 +1280,16 @@
 
 @media (max-width: 767px) {
   .navbar__talk {
-    display: none;
+    display: block;
+  }
+
+  .navbar__talk-panel {
+    position: fixed;
+    top: 66px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+    max-width: none;
   }
 }
 
