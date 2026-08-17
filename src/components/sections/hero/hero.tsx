@@ -1,5 +1,6 @@
 import "./hero.css";
 import { ExperienceCard } from "./ExperienceCard";
+import type { MouseEvent as ReactMouseEvent } from "react";
 
 const flakes = Array.from({ length: 34 }, (_, index) => ({
   id: index,
@@ -12,6 +13,34 @@ const flakes = Array.from({ length: 34 }, (_, index) => ({
 }));
 
 export default function Hero() {
+  /* =====================================================
+     CENTERED NAVIGATION SCROLL
+     ===================================================== */
+
+  const handleHeroNavClick = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) {
+      return;
+    }
+
+    const targetId = href.slice(1);
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    });
+  };
+
   return (
     <section className="hero" aria-labelledby="hero-title">
 
@@ -110,9 +139,17 @@ export default function Hero() {
 
           <div className="hero__actions">
 
+            {/* START A CASE */}
+
             <a
               href="#contact"
               className="hero__button hero__button--primary"
+              onClick={(event) =>
+                handleHeroNavClick(
+                  event,
+                  "#contact"
+                )
+              }
             >
               <span>
                 Start a Case
@@ -124,9 +161,17 @@ export default function Hero() {
             </a>
 
 
+            {/* EXPLORE SERVICES */}
+
             <a
               href="#services"
               className="hero__button hero__button--secondary"
+              onClick={(event) =>
+                handleHeroNavClick(
+                  event,
+                  "#services"
+                )
+              }
             >
               <span>
                 Explore Services
@@ -213,6 +258,12 @@ export default function Hero() {
         href="#services"
         className="hero__scroll"
         aria-label="Scroll to services"
+        onClick={(event) =>
+          handleHeroNavClick(
+            event,
+            "#services"
+          )
+        }
       >
         <span className="hero__scroll-line" />
 

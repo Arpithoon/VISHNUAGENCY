@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { MouseEvent as ReactMouseEvent } from "react";
 import {
   ArrowUpRight,
   ChevronDown,
@@ -56,7 +57,6 @@ export default function Navbar() {
     };
   }, []);
 
-
   /* =====================================================
      MOBILE MENU SCROLL LOCK
      ===================================================== */
@@ -68,7 +68,6 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
-
 
   /* =====================================================
      CLOSE LET'S TALK
@@ -113,7 +112,6 @@ export default function Navbar() {
     };
   }, []);
 
-
   /* =====================================================
      HELPERS
      ===================================================== */
@@ -126,6 +124,36 @@ export default function Navbar() {
     setTalkOpen(false);
   };
 
+  /* =====================================================
+     CENTERED NAVIGATION
+     ===================================================== */
+
+  const handleNavClick = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (!href.startsWith("#")) {
+      return;
+    }
+
+    const targetId = href.slice(1);
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    });
+
+    setMenuOpen(false);
+    setTalkOpen(false);
+  };
 
   /* =====================================================
      RENDER
@@ -179,6 +207,12 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 className="navbar__link"
+                onClick={(event) =>
+                  handleNavClick(
+                    event,
+                    item.href
+                  )
+                }
               >
                 {item.label}
               </a>
@@ -334,8 +368,14 @@ export default function Navbar() {
                 ================================================= */}
 
             <a
-             href="#contact"
+              href="#contact"
               className="navbar__cta"
+              onClick={(event) =>
+                handleNavClick(
+                  event,
+                  "#contact"
+                )
+              }
             >
               <span>
                 Start a Case
@@ -417,7 +457,12 @@ export default function Navbar() {
                       ? `${index * 70}ms`
                       : "0ms",
                 }}
-                onClick={closeMenu}
+                onClick={(event) =>
+                  handleNavClick(
+                    event,
+                    item.href
+                  )
+                }
               >
                 <span className="mobile-menu__number">
                   0{index + 1}
@@ -516,9 +561,14 @@ export default function Navbar() {
               ================================================= */}
 
           <a
-           href="#contact"
+            href="#contact"
             className="mobile-menu__cta"
-            onClick={closeMenu}
+            onClick={(event) =>
+              handleNavClick(
+                event,
+                "#contact"
+              )
+            }
           >
             <span>
               Start a Case

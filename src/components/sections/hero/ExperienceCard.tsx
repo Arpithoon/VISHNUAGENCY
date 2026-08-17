@@ -43,8 +43,12 @@ export function ExperienceCard() {
             </div>
 
             <div className="experience-card__logo-wrap">
-             <img src="/tnt.jpg" alt="ACY Social Media Agency" />
-            </div>
+  <img
+    src="/tnt.jpg"
+    alt="ACY Social Media Agency"
+    className="experience-card__logo"
+  />
+</div>
 
             <div className="experience-card__identity">
               <span className="experience-card__label">
