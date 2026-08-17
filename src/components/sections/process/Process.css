@@ -1,0 +1,559 @@
+/* =========================================================
+   PROCESS SECTION
+   ========================================================= */
+
+.process {
+  position: relative;
+  overflow: hidden;
+
+  padding: 120px 40px 90px;
+
+  background:
+    radial-gradient(
+      circle at 82% 45%,
+      rgba(255, 122, 0, 0.055),
+      transparent 32%
+    ),
+    #050505;
+
+  color: #f5f5f5;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+/* =========================================================
+   SUBTLE GRID
+   ========================================================= */
+
+.process::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.18;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 80px 80px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    black,
+    transparent 90%
+  );
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.process__container {
+  position: relative;
+  z-index: 1;
+
+  width: min(1400px, 100%);
+
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.process__header {
+  margin-bottom: 75px;
+}
+
+
+.process__eyebrow {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 48px;
+
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.38);
+}
+
+
+.process__eyebrow-line {
+  width: 28px;
+  height: 1px;
+
+  background: #ff7800;
+}
+
+
+.process__intro {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(280px, 0.7fr);
+
+  gap: 70px;
+
+  align-items: end;
+}
+
+
+.process__intro h2 {
+  margin: 0;
+
+  font-size: clamp(55px, 7vw, 105px);
+
+  line-height: 0.88;
+
+  letter-spacing: -0.065em;
+
+  font-weight: 600;
+}
+
+
+.process__intro h2 span {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+
+.process__intro p {
+  max-width: 390px;
+
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.58);
+}
+
+
+/* =========================================================
+   STEPS
+   ========================================================= */
+
+.process__steps {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+
+.process__step {
+  position: relative;
+
+  min-height: 290px;
+
+  padding: 26px 28px 26px 0;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  transition:
+    background 250ms ease,
+    padding 250ms ease;
+}
+
+
+.process__step + .process__step {
+  padding-left: 28px;
+}
+
+
+.process__step:last-child {
+  border-right: 0;
+}
+
+
+/* =========================================================
+   NUMBER / CONNECTOR
+   ========================================================= */
+
+.process__step-top {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 50px;
+}
+
+
+.process__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 42px;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  border-radius: 50%;
+
+  font-family: var(--font-mono);
+
+  font-size: 9px;
+  letter-spacing: 0.08em;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  transition:
+    border-color 250ms ease,
+    color 250ms ease,
+    background 250ms ease;
+}
+
+
+.process__connector {
+  display: block;
+
+  flex: 1;
+
+  height: 1px;
+
+  margin-left: 14px;
+
+  background: rgba(255, 255, 255, 0.11);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.process__step-content {
+  padding-right: 28px;
+}
+
+
+.process__step-label {
+  display: block;
+
+  margin-bottom: 13px;
+
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+  letter-spacing: 0.15em;
+
+  color: rgba(255, 255, 255, 0.38);
+}
+
+
+.process__step h3 {
+  margin: 0 0 15px;
+
+  font-size: clamp(30px, 3vw, 44px);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.05em;
+
+  font-weight: 500;
+}
+
+
+.process__step p {
+  max-width: 270px;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  color: rgba(255, 255, 255, 0.58);
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.process__step-arrow {
+  position: absolute;
+
+  right: 24px;
+  bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  border-radius: 50%;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.process__step:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 122, 0, 0.035),
+      transparent 70%
+    );
+}
+
+
+.process__step:hover .process__number {
+  color: #ff7800;
+
+  border-color: rgba(255, 122, 0, 0.55);
+
+  background: rgba(255, 122, 0, 0.05);
+}
+
+
+.process__step:hover .process__step-arrow {
+  color: #ff7800;
+
+  border-color: rgba(255, 122, 0, 0.45);
+
+  transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   BOTTOM CTA
+   ========================================================= */
+
+.process__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 60px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+
+.process__bottom-label {
+  font-family: var(--font-mono);
+
+  font-size: 8px;
+  letter-spacing: 0.16em;
+
+  color: rgba(255, 255, 255, 0.38);
+}
+
+
+.process__cta {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 14px;
+
+  color: #f5f5f5;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+
+.process__cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  border-radius: 50%;
+
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+
+.process__cta:hover .process__cta-icon {
+  color: #050505;
+
+  background: #ff7800;
+
+  border-color: #ff7800;
+
+  transform: translate(3px, -3px);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .process {
+    padding: 100px 28px 80px;
+  }
+
+  .process__intro {
+    grid-template-columns: 1fr;
+
+    gap: 30px;
+  }
+
+  .process__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .process__step:nth-child(2) {
+    border-right: 0;
+  }
+
+  .process__step:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .process {
+    padding: 80px 20px 65px;
+  }
+
+  .process__header {
+    margin-bottom: 55px;
+  }
+
+  .process__eyebrow {
+    margin-bottom: 35px;
+  }
+
+  .process__intro h2 {
+    font-size: clamp(48px, 14vw, 75px);
+  }
+
+  .process__intro p {
+    font-size: 13px;
+  }
+
+  .process__steps {
+    grid-template-columns: 1fr;
+  }
+
+  .process__step,
+  .process__step + .process__step {
+    min-height: 280px;
+
+    padding: 24px 0;
+
+    border-right: 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .process__step:last-child {
+    border-bottom: 0;
+  }
+
+  .process__step:nth-child(n + 3) {
+    border-top: 0;
+  }
+
+  .process__step-top {
+    margin-bottom: 45px;
+  }
+
+  .process__step-content {
+    padding-right: 45px;
+  }
+
+  .process__step h3 {
+    font-size: 38px;
+  }
+
+  .process__step p {
+    max-width: 310px;
+  }
+
+  .process__bottom {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    margin-top: 50px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .process__step,
+  .process__number,
+  .process__step-arrow,
+  .process__cta-icon {
+    transition: none;
+  }
+
+  .process__step:hover .process__step-arrow {
+    transform: none;
+  }
+
+  .process__cta:hover .process__cta-icon {
+    transform: none;
+  }
+}

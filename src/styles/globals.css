@@ -1,0 +1,192 @@
+/* ========================================
+   GLOBALS
+   ======================================== */
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-background);
+}
+
+body {
+  min-width: 320px;
+
+  background: var(--color-background);
+  color: var(--color-text-primary);
+
+  font-family: var(--font-sans);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ========================================
+   ROOT
+   ======================================== */
+
+#root {
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+}
+
+p {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+
+/* ========================================
+   LINKS
+   ======================================== */
+
+a {
+  transition:
+    color var(--transition-base),
+    opacity var(--transition-base);
+}
+
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+button {
+  color: inherit;
+}
+
+
+/* ========================================
+   IMAGES
+   ======================================== */
+
+img {
+  user-select: none;
+}
+
+
+/* ========================================
+   TEXT UTILITIES
+   ======================================== */
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+
+.container {
+  width: min(
+    calc(100% - (var(--container-padding) * 2)),
+    var(--container-width)
+  );
+
+  margin-inline: auto;
+}
+
+
+/* ========================================
+   SECTION
+   ======================================== */
+
+.section {
+  position: relative;
+  width: 100%;
+  padding-block: var(--section-spacing);
+}
+
+
+/* ========================================
+   SELECTION
+   ======================================== */
+
+::selection {
+  background: var(--color-accent);
+  color: #000000;
+}
+
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+
+/* ========================================
+   REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (min-width: 640px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}

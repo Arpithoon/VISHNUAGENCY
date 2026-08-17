@@ -1,0 +1,687 @@
+/* =========================================================
+   ACY — SERVICE DOOR
+   ARCHITECTURAL DOOR / PREMIUM INTERACTION SYSTEM
+   ========================================================= */
+
+.service-door {
+  --door-accent: #ff7a00;
+
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+  margin: 0;
+
+  border: 0;
+
+  appearance: none;
+  background: none;
+
+  font: inherit;
+  color: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  perspective: 1200px;
+}
+
+.service-door__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* =========================================================
+   FRAME + DEPTH
+   ========================================================= */
+
+.service-door__frame {
+  position: relative;
+
+  flex: 1;
+
+  aspect-ratio: 3 / 4;
+  min-height: 220px;
+
+  transform-style: preserve-3d;
+
+  transform:
+    rotateX(var(--door-rx, 0deg))
+    rotateY(var(--door-ry, 0deg))
+    translate3d(var(--door-mx, 0px), var(--door-my, 0px), 0);
+
+  transition:
+    transform 550ms var(--ease-out-expo);
+
+  will-change: transform;
+}
+
+.service-door__shadow {
+  position: absolute;
+  inset: 6% -6% -10% -6%;
+
+  z-index: -1;
+
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 100%,
+    rgba(0, 0, 0, 0.55),
+    transparent 72%
+  );
+
+  filter: blur(18px);
+  opacity: 0.6;
+
+  transition: opacity 500ms ease;
+}
+
+.service-door--hovered .service-door__shadow,
+.service-door--active .service-door__shadow {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   INTERIOR — revealed as the door leaf swings open
+   ========================================================= */
+
+.service-door__interior {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 10px;
+
+  padding: 16px 16px 20px;
+
+  transform: translateZ(-46px);
+
+  border-radius: var(--radius-sm);
+
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--door-accent) 16%, transparent),
+      transparent 55%
+    ),
+    #0a0908;
+
+  opacity: 0;
+
+  transition:
+    opacity 450ms ease 80ms;
+
+  pointer-events: none;
+}
+
+.service-door--active .service-door__interior {
+  opacity: 1;
+  transition-delay: 260ms;
+}
+
+.service-door__interior-glow {
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    ellipse 70% 55% at 30% 100%,
+    color-mix(in srgb, var(--door-accent) 45%, transparent),
+    transparent 70%
+  );
+
+  opacity: 0.5;
+}
+
+.service-door__interior-icon {
+  position: relative;
+
+  color: var(--door-accent);
+
+  opacity: 0.9;
+}
+
+.service-door__interior-text {
+  position: relative;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+}
+
+.service-door__interior-hint {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: var(--door-accent);
+
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.service-door__depth {
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  transform: translateZ(-14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+
+  background: #060606;
+
+  opacity: 0.7;
+
+  transition: box-shadow 550ms ease;
+}
+
+.service-door--active .service-door__depth {
+  box-shadow: inset 0 0 30px
+    color-mix(in srgb, var(--door-accent) 25%, transparent);
+}
+
+
+/* =========================================================
+   PANEL
+   ========================================================= */
+
+.service-door__panel {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 16px 14px 18px;
+
+  overflow: hidden;
+
+  border: 1px solid
+    color-mix(in srgb, var(--door-accent) 20%, var(--color-border));
+  border-radius: var(--radius-sm);
+
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.008) 40%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    radial-gradient(
+      ellipse 90% 60% at 50% 0%,
+      color-mix(in srgb, var(--door-accent) 10%, transparent),
+      transparent 70%
+    ),
+    var(--color-surface);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--shadow-md);
+
+  transform-origin: left center;
+  transform: rotateY(0deg) translateZ(0);
+
+  transition:
+    border-color 450ms ease,
+    box-shadow 450ms ease,
+    background 450ms ease,
+    transform 650ms var(--ease-out-expo);
+
+  transform-style: preserve-3d;
+
+  will-change: transform;
+}
+
+.service-door__panel::before {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+
+  height: 2px;
+
+  content: "";
+
+  background: var(--door-accent);
+  opacity: 0.5;
+
+  transition: opacity 400ms ease;
+
+  pointer-events: none;
+}
+
+.service-door--hovered .service-door__panel::before,
+.service-door--active .service-door__panel::before {
+  opacity: 1;
+}
+
+.service-door--hovered .service-door__panel {
+  border-color: color-mix(in srgb, var(--door-accent) 45%, transparent);
+}
+
+.service-door--active .service-door__panel {
+  border-color: var(--door-accent);
+
+  transform: rotateY(-58deg) translateZ(2px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    12px 10px 26px rgba(0, 0, 0, 0.5),
+    0 0 0 1px color-mix(in srgb, var(--door-accent) 35%, transparent);
+}
+
+.service-door:focus-visible .service-door__panel {
+  outline: none;
+  border-color: var(--door-accent);
+  box-shadow:
+    0 0 0 2px var(--color-background),
+    0 0 0 4px var(--door-accent);
+}
+
+
+/* =========================================================
+   TEXTURE + AMBIENT
+   ========================================================= */
+
+.service-door__glass {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 30%
+  );
+
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.service-door__grid-texture {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+
+  background-size: 16px 16px;
+
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.service-door__ambient {
+  position: absolute;
+  inset: -20% -20% auto -20%;
+
+  height: 70%;
+
+  background: radial-gradient(
+    ellipse 60% 60% at 50% 0%,
+    color-mix(in srgb, var(--door-accent) 55%, transparent),
+    transparent 70%
+  );
+
+  opacity: 0.05;
+  transition: opacity 550ms ease;
+  pointer-events: none;
+}
+
+.service-door--hovered .service-door__ambient,
+.service-door--active .service-door__ambient {
+  opacity: 0.22;
+}
+
+.service-door__light-edge {
+  position: absolute;
+  inset: 0;
+
+  border-radius: var(--radius-sm);
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.12) 48%,
+    transparent 62%
+  );
+
+  background-size: 220% 220%;
+  background-position: 120% 0%;
+
+  opacity: 0;
+
+  transition:
+    opacity 500ms ease,
+    background-position 900ms var(--ease-out-expo);
+
+  pointer-events: none;
+}
+
+.service-door--hovered .service-door__light-edge {
+  opacity: 0.5;
+  background-position: -20% 100%;
+}
+
+
+/* =========================================================
+   TOP ROW — BRAND + NUMBER
+   ========================================================= */
+
+.service-door__top {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.service-door__brand {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.service-door__number {
+  color: var(--door-accent);
+  transition: color 400ms ease;
+}
+
+
+/* =========================================================
+   CENTRAL SYMBOL
+   ========================================================= */
+
+.service-door__symbol {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  align-self: center;
+
+  width: 42px;
+  height: 42px;
+
+  margin: 8px 0;
+}
+
+.service-door__symbol-ring {
+  position: absolute;
+  inset: 0;
+
+  border: 1px solid
+    color-mix(in srgb, var(--door-accent) 32%, rgba(255, 255, 255, 0.14));
+  border-radius: 50%;
+
+  transition:
+    border-color 450ms ease,
+    transform 450ms var(--ease-out-expo);
+}
+
+.service-door--hovered .service-door__symbol-ring,
+.service-door--active .service-door__symbol-ring {
+  border-color: var(--door-accent);
+  transform: scale(1.12);
+}
+
+.service-door__symbol-icon {
+  position: relative;
+  z-index: 1;
+
+  color: color-mix(in srgb, var(--door-accent) 38%, rgba(255, 255, 255, 0.75));
+
+  transition:
+    color 400ms ease,
+    transform 450ms var(--ease-out-expo);
+}
+
+.service-door--hovered .service-door__symbol-icon,
+.service-door--active .service-door__symbol-icon {
+  color: var(--door-accent);
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   VERTICAL CATEGORY PLAQUE
+   ========================================================= */
+
+.service-door__plaque {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+
+  max-height: 70%;
+
+  writing-mode: vertical-rl;
+  transform: translateY(-50%) rotate(180deg);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: color-mix(in srgb, var(--door-accent) 30%, rgba(255, 255, 255, 0.22));
+
+  font-family: var(--font-mono);
+  font-size: 7px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HANDLE
+   ========================================================= */
+
+.service-door__handle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+
+  transform: translate(2px, -50%);
+
+  opacity: 0.55;
+
+  transition:
+    opacity 400ms ease,
+    transform 450ms var(--ease-out-expo);
+}
+
+.service-door--hovered .service-door__handle,
+.service-door--active .service-door__handle {
+  opacity: 1;
+  transform: translate(-1px, -50%);
+}
+
+.service-door__handle-bar {
+  width: 2px;
+  height: 26px;
+
+  border-radius: 2px;
+
+  background: color-mix(in srgb, var(--door-accent) 35%, rgba(255, 255, 255, 0.35));
+
+  transition: background 400ms ease;
+}
+
+.service-door--hovered .service-door__handle-bar,
+.service-door--active .service-door__handle-bar {
+  background: var(--door-accent);
+}
+
+.service-door__handle-dot {
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: color-mix(in srgb, var(--door-accent) 35%, rgba(255, 255, 255, 0.35));
+}
+
+.service-door--hovered .service-door__handle-dot,
+.service-door--active .service-door__handle-dot {
+  background: var(--door-accent);
+}
+
+
+/* =========================================================
+   FOOTER / TITLE
+   ========================================================= */
+
+.service-door__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+.service-door__title {
+  color: var(--color-text-primary);
+
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  transition: color 400ms ease;
+}
+
+.service-door--active .service-door__title {
+  color: var(--door-accent);
+}
+
+.service-door__action {
+  display: grid;
+  place-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  transition:
+    background 400ms ease,
+    border-color 400ms ease,
+    color 400ms ease,
+    transform 500ms var(--ease-out-expo);
+}
+
+.service-door--hovered .service-door__action,
+.service-door--active .service-door__action {
+  border-color: var(--door-accent);
+  background: var(--door-accent);
+  color: #0a0a0a;
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .service-door__frame {
+    aspect-ratio: 4 / 3.4;
+    min-height: 200px;
+  }
+
+  .service-door__title {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .service-door__frame {
+    aspect-ratio: 3 / 4;
+    min-height: 260px;
+  }
+
+  .service-door__panel {
+    padding: 18px 16px 20px;
+  }
+
+  .service-door__title {
+    font-size: 1.5rem;
+  }
+
+  .service-door__plaque {
+    right: 10px;
+    font-size: 7.5px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .service-door__frame {
+    transition: none;
+    transform: none !important;
+  }
+
+  .service-door__panel,
+  .service-door__interior,
+  .service-door__ambient,
+  .service-door__light-edge,
+  .service-door__symbol-ring,
+  .service-door__symbol-icon,
+  .service-door__handle,
+  .service-door__handle-bar,
+  .service-door__handle-dot,
+  .service-door__title,
+  .service-door__action,
+  .service-door__shadow {
+    transition: none !important;
+  }
+}

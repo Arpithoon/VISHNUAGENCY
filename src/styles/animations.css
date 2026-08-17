@@ -1,0 +1,672 @@
+/* =========================================================
+   GLOBAL MOTION SYSTEM
+   Premium / Cinematic / Interactive
+   ========================================================= */
+
+
+/* =========================================================
+   01 — MOTION TOKENS
+   ========================================================= */
+
+:root {
+  --motion-fast: 180ms;
+  --motion-base: 420ms;
+  --motion-smooth: 700ms;
+  --motion-slow: 1000ms;
+  --motion-cinematic: 1400ms;
+
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* =========================================================
+   02 — PAGE REVEAL
+   ========================================================= */
+
+@keyframes page-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.motion-page-reveal {
+  animation: page-reveal 1.2s var(--ease-expo) both;
+}
+
+
+/* =========================================================
+   03 — CINEMATIC FADE + BLUR
+   ========================================================= */
+
+@keyframes cinematic-in {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translate3d(0, 30px, 0) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.motion-cinematic-in {
+  animation: cinematic-in 1.1s var(--ease-expo) both;
+}
+
+
+/* =========================================================
+   04 — TEXT CLIP REVEAL
+   ========================================================= */
+
+.motion-text-mask {
+  overflow: hidden;
+}
+
+@keyframes text-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 110%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.motion-text-reveal {
+  animation: text-reveal 900ms var(--ease-expo) both;
+}
+
+
+/* =========================================================
+   05 — TEXT BLUR REVEAL
+   ========================================================= */
+
+@keyframes text-blur-reveal {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+.motion-text-blur {
+  animation: text-blur-reveal 1000ms var(--ease-expo) both;
+}
+
+
+/* =========================================================
+   06 — STAGGER SYSTEM
+   ========================================================= */
+
+@keyframes stagger-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.motion-stagger > * {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  animation: stagger-up 900ms var(--ease-expo) forwards;
+}
+
+.motion-stagger > *:nth-child(1) {
+  animation-delay: 80ms;
+}
+
+.motion-stagger > *:nth-child(2) {
+  animation-delay: 160ms;
+}
+
+.motion-stagger > *:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+.motion-stagger > *:nth-child(4) {
+  animation-delay: 320ms;
+}
+
+.motion-stagger > *:nth-child(5) {
+  animation-delay: 400ms;
+}
+
+.motion-stagger > *:nth-child(6) {
+  animation-delay: 480ms;
+}
+
+
+/* =========================================================
+   07 — SCALE REVEAL
+   ========================================================= */
+
+@keyframes scale-reveal {
+  from {
+    opacity: 0;
+    transform: scale3d(0.88, 0.88, 1);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.motion-scale-reveal {
+  animation: scale-reveal 1s var(--ease-expo) both;
+}
+
+
+/* =========================================================
+   08 — AMBIENT FLOAT
+   ========================================================= */
+
+@keyframes ambient-float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(10px, -14px, 0);
+  }
+
+  50% {
+    transform: translate3d(-6px, -24px, 0);
+  }
+
+  75% {
+    transform: translate3d(-14px, -8px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.motion-ambient-float {
+  animation: ambient-float 12s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   09 — AMBIENT ROTATION
+   ========================================================= */
+
+@keyframes ambient-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.motion-ambient-rotate {
+  animation: ambient-rotate 30s linear infinite;
+}
+
+
+/* =========================================================
+   10 — GLOW PULSE
+   ========================================================= */
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.motion-glow-pulse {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   11 — SCAN LINE
+   ========================================================= */
+
+@keyframes scan-line {
+  0% {
+    opacity: 0;
+    transform: translateY(-120%);
+  }
+
+  10% {
+    opacity: 0.5;
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(120%);
+  }
+}
+
+.motion-scan-line {
+  animation: scan-line 4s var(--ease-smooth) infinite;
+}
+
+
+/* =========================================================
+   12 — SHIMMER
+   ========================================================= */
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+
+  to {
+    background-position: 200% 0;
+  }
+}
+
+.motion-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2.8s linear infinite;
+}
+
+
+/* =========================================================
+   13 — BORDER GLOW
+   ========================================================= */
+
+@keyframes border-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(255, 122, 0, 0),
+      inset 0 0 0 rgba(255, 122, 0, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(255, 122, 0, 0.12),
+      inset 0 0 20px rgba(255, 122, 0, 0.03);
+  }
+}
+
+.motion-border-glow {
+  animation: border-pulse 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   14 — MAGNETIC HOVER FOUNDATION
+   ========================================================= */
+
+.motion-magnetic {
+  transition:
+    transform var(--motion-base) var(--ease-silk),
+    filter var(--motion-base) var(--ease-silk);
+}
+
+.motion-magnetic:hover {
+  transform: translate3d(0, -3px, 0);
+  filter: brightness(1.08);
+}
+
+
+/* =========================================================
+   15 — 3D HOVER FOUNDATION
+   ========================================================= */
+
+.motion-3d {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+
+  transition:
+    transform 700ms var(--ease-silk),
+    box-shadow 700ms var(--ease-silk);
+}
+
+.motion-3d:hover {
+  transform:
+    perspective(1200px)
+    rotateX(2deg)
+    rotateY(-2deg)
+    translateY(-6px);
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   16 — DEPTH LAYERS
+   ========================================================= */
+
+.motion-depth {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.motion-depth-1 {
+  transform: translate3d(0, 0, 20px);
+}
+
+.motion-depth-2 {
+  transform: translate3d(0, 0, 40px);
+}
+
+.motion-depth-3 {
+  transform: translate3d(0, 0, 70px);
+}
+
+
+/* =========================================================
+   17 — INTERACTIVE PANEL
+   ========================================================= */
+
+.motion-panel {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+
+  transition:
+    transform 900ms var(--ease-expo),
+    opacity 600ms var(--ease-expo),
+    filter 700ms var(--ease-expo);
+}
+
+.motion-panel:hover {
+  transform:
+    perspective(1400px)
+    translateZ(30px)
+    rotateX(1deg)
+    rotateY(-1deg);
+}
+
+
+/* =========================================================
+   18 — DOOR OPENING
+   ========================================================= */
+
+@keyframes door-open-left {
+  from {
+    transform: perspective(1600px) rotateY(0deg);
+  }
+
+  to {
+    transform: perspective(1600px) rotateY(-88deg);
+  }
+}
+
+@keyframes door-open-right {
+  from {
+    transform: perspective(1600px) rotateY(0deg);
+  }
+
+  to {
+    transform: perspective(1600px) rotateY(88deg);
+  }
+}
+
+.motion-door-left {
+  transform-origin: left center;
+}
+
+.motion-door-left.is-opening {
+  animation: door-open-left 1100ms var(--ease-expo) forwards;
+}
+
+.motion-door-right {
+  transform-origin: right center;
+}
+
+.motion-door-right.is-opening {
+  animation: door-open-right 1100ms var(--ease-expo) forwards;
+}
+
+
+/* =========================================================
+   19 — DEPTH REVEAL
+   ========================================================= */
+
+@keyframes depth-reveal {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform:
+      perspective(1200px)
+      translateZ(-120px)
+      scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform:
+      perspective(1200px)
+      translateZ(0)
+      scale(1);
+  }
+}
+
+.motion-depth-reveal {
+  animation: depth-reveal 1200ms var(--ease-expo) both;
+}
+
+
+/* =========================================================
+   20 — CURTAIN REVEAL
+   ========================================================= */
+
+@keyframes curtain-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes curtain-right {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.motion-curtain-left {
+  animation: curtain-left 1100ms var(--ease-expo) forwards;
+}
+
+.motion-curtain-right {
+  animation: curtain-right 1100ms var(--ease-expo) forwards;
+}
+
+
+/* =========================================================
+   21 — LIGHT SWEEP
+   ========================================================= */
+
+@keyframes light-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) skewX(-15deg);
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  70% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(220%) skewX(-15deg);
+  }
+}
+
+.motion-light-sweep {
+  animation: light-sweep 1.8s var(--ease-smooth) both;
+}
+
+
+/* =========================================================
+   22 — PREMIUM LINK UNDERLINE
+   ========================================================= */
+
+.motion-link {
+  position: relative;
+  display: inline-flex;
+}
+
+.motion-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+  left: 0;
+
+  height: 1px;
+
+  background: currentColor;
+
+  content: "";
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform 500ms var(--ease-expo);
+}
+
+.motion-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* =========================================================
+   23 — PREMIUM BUTTON
+   ========================================================= */
+
+.motion-button {
+  transition:
+    transform 250ms var(--ease-spring),
+    filter 250ms ease;
+}
+
+.motion-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.motion-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+
+/* =========================================================
+   24 — CURSOR FOLLOW
+   ========================================================= */
+
+.motion-cursor-follow {
+  pointer-events: none;
+  will-change: transform;
+
+  transition:
+    transform 120ms linear,
+    opacity 250ms ease;
+}
+
+
+/* =========================================================
+   25 — PERFORMANCE
+   ========================================================= */
+
+.motion-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.motion-will-change {
+  will-change: transform, opacity;
+}
+
+
+/* =========================================================
+   26 — MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .motion-3d:hover {
+    transform: none;
+  }
+
+  .motion-panel:hover {
+    transform: none;
+  }
+}
+
+
+/* =========================================================
+   27 — REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .motion-ambient-float,
+  .motion-ambient-rotate,
+  .motion-glow-pulse,
+  .motion-scan-line,
+  .motion-shimmer,
+  .motion-border-glow {
+    animation: none !important;
+  }
+}
