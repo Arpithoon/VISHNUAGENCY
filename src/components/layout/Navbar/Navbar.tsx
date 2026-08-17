@@ -516,7 +516,7 @@ export default function Navbar() {
               ================================================= */}
 
           <a
-            href="#assessment"
+           href="#contact"
             className="mobile-menu__cta"
             onClick={closeMenu}
           >

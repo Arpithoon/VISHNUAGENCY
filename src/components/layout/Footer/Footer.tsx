@@ -68,7 +68,7 @@ export default function Footer() {
             Start a conversation
           </span>
 
-          <a href="#assessment">
+          <a href="#contact">
             Discuss your case
             <ArrowUpRight size={14} />
           </a>

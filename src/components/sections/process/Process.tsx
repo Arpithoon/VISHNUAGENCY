@@ -127,7 +127,7 @@ export default function Process() {
           </span>
 
           <a
-            href="#assessment"
+            href="#contact"
             className="process__cta"
           >
             <span>Discuss your case</span>

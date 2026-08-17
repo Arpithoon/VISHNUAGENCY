@@ -111,7 +111,7 @@ export default function Hero() {
           <div className="hero__actions">
 
             <a
-              href="#assessment"
+              href="#contact"
               className="hero__button hero__button--primary"
             >
               <span>

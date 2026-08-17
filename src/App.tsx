@@ -45,7 +45,7 @@ function App() {
 
         {/* ===================================================
             START A CASE / CONTACT
-            Navbar -> #assessment
+            Navbar -> <div id="contact"></div>
             =================================================== */}
         <Contact />
 
